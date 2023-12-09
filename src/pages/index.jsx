@@ -1,9 +1,10 @@
 import Link from "next/link"
 import Title from "@/web/components/Title"
 import Button from "@/web/components/Button"
+import Container from "@/web/components/Container"
 
 const IndexPage = () => (
-  <div className="flex flex-col justify-center items-center h-screen">
+  <Container className="w-[450px] h-[270px]">
     <Title titleLabel="Blog" />
     <p className="mt-7 text-center">
       Welcome to the best blogging platform in the world. <br /> You can log in
@@ -14,7 +15,7 @@ const IndexPage = () => (
       <Link href="/sign-in"><Button btnLabel="Sign in" /></Link>
       <Link href="/sign-up"><Button btnLabel="Sign up" /></Link>
     </span>
-  </div>
+  </Container>
 )
 
 export default IndexPage
