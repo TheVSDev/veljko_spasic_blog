@@ -4,7 +4,7 @@ import Button from "@/web/components/Button"
 import Container from "@/web/components/Container"
 
 const IndexPage = () => (
-  <Container className="w-[450px] h-[270px]">
+  <Container className="flex flex-col justify-center items-center w-[450px] h-[270px] absolute left-[35%] top-[25%]">
     <Title titleLabel="Blog" />
     <p className="mt-7 text-center">
       Welcome to the best blogging platform in the world. <br /> You can log in
