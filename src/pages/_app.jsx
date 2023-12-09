@@ -1,5 +1,11 @@
-import "@/styles/globals.css"
+import "@/web/styles/globals.css"
+import HeadPage from "@/web/components/HeadPage"
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const App = ({ Component, pageProps }) => (
+  <>
+    <HeadPage />
+    <Component {...pageProps} />
+  </>
+)
+
+export default App
