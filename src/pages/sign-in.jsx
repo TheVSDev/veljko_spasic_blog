@@ -3,6 +3,7 @@ import Container from "@/web/components/Container"
 import Form from "@/web/components/Form"
 import FormField from "@/web/components/FormField"
 import SubmitButton from "@/web/components/SubmitButton"
+import ClickableRedirect from "@/web/components/ClickableRedirect"
 import {
   emailValidator,
   passwordValidator
@@ -20,7 +21,7 @@ const handleSubmit = () => {
   //
 }
 const SignInPage = () => (
-  <Container className="w-[450px] h-[360px] ml-[35%] mt-[10%]">
+  <Container className="w-[450px] h-[386px] ml-[35%] mt-[10%]">
     <Form
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -39,6 +40,7 @@ const SignInPage = () => (
         label="Password"
       />
       <SubmitButton btnLabel="Log in" onSubmit={handleSubmit} />
+      <ClickableRedirect redirectMessage="You don't have an account, " redirectLink="/sign-up" redirectLinkLabel="create one" />
     </Form>
   </Container>
 )
