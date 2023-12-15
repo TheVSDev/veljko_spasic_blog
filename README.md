@@ -1,9 +1,17 @@
 # blog
 
+## Table of contents
+
+- [Summary](#summary)
+- [Epics & Stories](#epics--stories)
+    - [Basic blogging](#basic-blogging)
+    - [Advanced blogging](#advanced-blogging)
+    - [Legendary blogging](#legendary-blogging)
+- [How to setup](#how-to-setup)
+
+
 ## Summary
 Create a full-fledged blogging platform.
-
-This is exercise covers all the lessons learnt during the past weeks
 
 ## Epics & Stories
 ### Basic blogging
@@ -44,3 +52,11 @@ This is exercise covers all the lessons learnt during the past weeks
     - semi-automatic spam management
      - upload images for posts + WYSIWYG editor
     - create link automatically in posts by text analysis
+
+
+## How to setup
+At the root of your project run
+```sh
+npm i
+npm run dev
+```
