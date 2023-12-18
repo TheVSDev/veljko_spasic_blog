@@ -54,7 +54,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <Container className="w-[450px] h-[569px] ml-[35%] mt-[3%]">
+    <Container className="w-[450px] h-[369px] ml-[35%] mt-[1%] border-b-0">
       <Form
         initialValues={initialValues}
         validationSchema={validationSchema}
