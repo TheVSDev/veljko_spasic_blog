@@ -31,11 +31,11 @@ const SignInPage = () => {
 
     saveSessionToken(jwt)
 
-    router.push("/")
+    router.push("/home")
   }
 
   return (
-  <Container className="w-[450px] h-[366px] ml-[35%] mt-[10%]">
+  <Container className="w-[450px] h-[366px] ml-[35%] mt-[5%]">
     <Form
       initialValues={initialValues}
       validationSchema={validationSchema}
