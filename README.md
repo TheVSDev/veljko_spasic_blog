@@ -55,8 +55,13 @@ Create a full-fledged blogging platform.
 
 
 ## How to setup
-At the root of your project run
-```sh
-npm i
-npm run dev
+At the **root of your project**:
+1. Run `npm i` to install all dependencies
+2. Create a `.env.local` file and add this:
 ```
+DB__CONNECTION=<Connection link to your PostgreSQL DB>
+NEXT_PUBLIC_API__BASE_URL=<Link to API folder inside pages directory>
+SECURITY__JWT__SECRET=<Secret code>
+SECURITY__PASSWORD__PEPPER=<Secret code>
+```
+3. Run `npm run dev` to start the development server
