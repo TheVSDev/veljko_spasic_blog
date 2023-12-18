@@ -1,13 +1,16 @@
 import { object } from "yup"
+import { useRouter } from "next/router"
+import { useMutation } from "@tanstack/react-query"
 import Container from "@/web/components/Container"
 import Form from "@/web/components/Form"
 import FormField from "@/web/components/FormField"
 import SubmitButton from "@/web/components/SubmitButton"
-import ClickableRedirect from "@/web/components/ClickableRedirect"
 import {
   emailValidator,
   passwordValidator
 } from "@/utils/validators"
+import apiClient from "@/web/services/apiClient"
+import { useSession } from "@/web/components/SessionContext"
 
 const initialValues = {
   email: "",
@@ -17,11 +20,22 @@ const validationSchema = object({
   email: emailValidator.label("E-mail"),
   password: passwordValidator.label("Password")
 })
-const handleSubmit = () => {
-  //
-}
-const SignInPage = () => (
-  <Container className="w-[450px] h-[386px] ml-[35%] mt-[10%]">
+const SignInPage = () => {
+  const router = useRouter()
+  const { saveSessionToken } = useSession()
+  const { mutateAsync } = useMutation({
+    mutationFn: (values) => apiClient.post("/sessions", values),
+  })
+  const handleSubmit = async (values) => {
+    const { result: jwt } = await mutateAsync(values)
+
+    saveSessionToken(jwt)
+
+    router.push("/")
+  }
+
+  return (
+  <Container className="w-[450px] h-[366px] ml-[35%] mt-[10%]">
     <Form
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -40,9 +54,8 @@ const SignInPage = () => (
         label="Password"
       />
       <SubmitButton btnLabel="Log in" onSubmit={handleSubmit} />
-      <ClickableRedirect redirectMessage="You don't have an account, " redirectLink="/sign-up" redirectLinkLabel="create one" />
     </Form>
-  </Container>
-)
+  </Container>)
+}
 
 export default SignInPage
