@@ -9,6 +9,9 @@ import {
   emailValidator,
   passwordValidator
 } from "@/utils/validators"
+import { useRouter } from "next/router"
+import { useMutation } from "@tanstack/react-query"
+import apiClient from "@/web/services/apiClient"
 
 const initialValues = {
   firstName: "",
@@ -22,10 +25,22 @@ const validationSchema = object({
   email: emailValidator.label("E-mail"),
   password: passwordValidator.label("Password")
 })
-const handleSubmit = () => {
-  //
-}
-const SignUpPage = () => (
+const SignUpPage = () => {
+  const router = useRouter()
+  const { isSuccess, mutateAsync } = useMutation({
+    mutationFn: (values) => apiClient.post("/users", values),
+  })
+  const handleSubmit = async (values) => {
+    await mutateAsync(values)
+
+    return true
+  }
+
+  if (isSuccess) {
+    router.push("/sign-in")
+  }
+
+  return(
   <Container className="w-[450px] h-[589px] ml-[35%] mt-[3%]">
     <Form
       initialValues={initialValues}
@@ -59,7 +74,7 @@ const SignUpPage = () => (
       <SubmitButton btnLabel="Create account" onSubmit={handleSubmit} />
       <ClickableRedirect redirectMessage="You already have an account ?" redirectLink="/sign-in" redirectLinkLabel="Sign in" />
     </Form>
-  </Container>
-)
+  </Container>)
+}
 
 export default SignUpPage
