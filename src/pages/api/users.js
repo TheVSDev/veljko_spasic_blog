@@ -1,6 +1,6 @@
 import { validate } from "@/api/middlewares/validate"
 import mw from "@/api/mw"
-import { emailValidator, nameValidator, passwordValidator } from "@/utils/validators"
+import { emailValidator, nameValidator, passwordValidator, typeValidator } from "@/utils/validators"
 
 const handle = mw({
   POST: [
@@ -10,11 +10,12 @@ const handle = mw({
         lastName: nameValidator,
         email: emailValidator,
         password: passwordValidator,
+        userType: typeValidator,
       },
     }),
     async ({
       input: {
-        body: { firstName, lastName, email, password },
+        body: { firstName, lastName, email, password, userType },
       },
       models: { UserModel },
       res,
@@ -27,15 +28,18 @@ const handle = mw({
         return
       }
 
+      const toLowerCaseUserType = userType.toLowerCase()
       const [passwordHash, passwordSalt] =
         await UserModel.hashPassword(password)
 
+      // Ensure that userType is properly handled in the insertAndFetch method
       await UserModel.query().insertAndFetch({
         firstName,
         lastName,
         email,
         passwordHash,
         passwordSalt,
+        userType: toLowerCaseUserType,
       })
 
       res.send({ result: true })

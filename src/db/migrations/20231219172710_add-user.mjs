@@ -6,6 +6,7 @@ export const up = async (db) => {
     table.text("email").notNullable().unique()
     table.text("passwordHash").notNullable()
     table.text("passwordSalt").notNullable()
+    table.text("userType").notNullable()
   })
 }
 

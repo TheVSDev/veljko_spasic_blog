@@ -11,7 +11,8 @@ import Button from "@/web/components/Button"
 import {
   nameValidator,
   emailValidator,
-  passwordValidator
+  passwordValidator,
+  typeValidator
 } from "@/utils/validators"
 import apiClient from "@/web/services/apiClient"
 import SuccessMessage from "@/web/components/AlertMessages/SuccessMessage"
@@ -21,15 +22,17 @@ const initialValues = {
   firstName: "",
   lastName: "",
   email: "",
-  password: ""
+  password: "",
+  userType: ""
 }
 const validationSchema = object({
   firstName: nameValidator.label("First Name"),
   lastName: nameValidator.label("Last Name"),
   email: emailValidator.label("E-mail"),
-  password: passwordValidator.label("Password")
+  password: passwordValidator.label("Password"),
+  userType: typeValidator.label("Account type")
 })
-// Success message component to be shown if sign up is successful
+// Internal components
 const Success = () => (
   <Container className="w-[600px] ml-[30%] mt-[4%] border-none flex flex-col gap-7">
     <SuccessMessage>Account created successfully</SuccessMessage>
@@ -37,6 +40,22 @@ const Success = () => (
       <Button btnLabel="Log in your account" />
     </Link>
   </Container>
+)
+const FullNameFormFields = () => (
+  <>
+    <FormField
+      name="firstName"
+      type="text"
+      placeholder="John"
+      label="First name"
+    />
+    <FormField
+      name="lastName"
+      type="text"
+      placeholder="Doe"
+      label="Last name"
+    />
+  </>
 )
 // Sign up page
 const SignUpPage = () => {
@@ -60,18 +79,7 @@ const SignUpPage = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
         title="Sign Up">
-        <FormField
-          name="firstName"
-          type="text"
-          placeholder="John"
-          label="First name"
-        />
-        <FormField
-          name="lastName"
-          type="text"
-          placeholder="Doe"
-          label="Last name"
-        />
+        <FullNameFormFields />
         <FormField
           name="email"
           type="email"
@@ -83,6 +91,12 @@ const SignUpPage = () => {
           type="password"
           placeholder="C4gdv@03tw_"
           label="Password"
+        />
+        <FormField
+          name="userType"
+          type="text"
+          placeholder="Reader or Creator"
+          label="Account type (Reader / Creator)"
         />
         <SubmitButton btnLabel="Create account" onSubmit={handleSubmit} />
       </Form>
