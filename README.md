@@ -64,4 +64,5 @@ NEXT_PUBLIC_API__BASE_URL=<Link to API folder inside pages directory>
 SECURITY__JWT__SECRET=<Secret code>
 SECURITY__PASSWORD__PEPPER=<Secret code>
 ```
-3. Run `npm run dev` to start the development server
+3. Run `npx knex migrate:latest` to update database
+4. Run `npm run dev` to start the development server
