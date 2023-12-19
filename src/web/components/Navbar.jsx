@@ -2,24 +2,32 @@ import Link from "next/link"
 import { useSession } from "@/web/components/SessionContext"
 import MenuItem from "@/web/components/MenuItem"
 import Button from "@/web/components/Button"
+import AccountTypeTag from "@/web/components/AccountTypeTag"
 
 const Navbar = () => {
   const { session, signOut } = useSession()
+  const isReader = session?.userType === "reader"
+  const isCreator = session?.userType === "creator"
+  const isAdmin = session?.userType === "admin"
 
   return (
     <header className="border-b-2 bg-slate-100">
       <div className="flex p-3">
         <div className="text-2xl">
-          <Link href="/home" className="no-underline list-none">BLOG</Link>
+          <Link href="/home" className="no-underline list-none">
+            BLOG
+          </Link>
         </div>
         <nav className="ms-auto">
           <ul className="flex h-full gap-16 items-center list-none text-base">
             {session ? (
               <>
-                <MenuItem linkTo="/home" listItemLabel="Home page" />
+                <MenuItem linkTo="/home" listItemLabel="Home" />
                 <MenuItem linkTo="/" listItemLabel="Dashboard" />
                 <MenuItem linkTo="/" listItemLabel="Profile" />
-                <MenuItem linkTo="/" listItemLabel="About" />
+                {isReader && <AccountTypeTag accountTypeLabel="READER" className="text-red-600 border-red-600" />}
+                {isCreator && <AccountTypeTag accountTypeLabel="CREATOR" className="text-blue-600 border-blue-600" />}
+                {isAdmin && <AccountTypeTag accountTypeLabel="ADMIN" className="text-green-600 border-green-600" />}
                 <Button btnLabel="Sign out" onClick={signOut} />
               </>
             ) : (
