@@ -1,8 +1,9 @@
 import { useRouter } from "next/router"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useMutation } from "@tanstack/react-query"
 import apiClient from "@/web/services/apiClient"
 import Pagination from "@/web/components/Pagination"
 import Title from "@/web/components/Title"
+import Button from "@/web/components/Button"
 
 export const getServerSideProps = async ({ query: { page } }) => {
   const data = await apiClient("/users", { params: { page } })
@@ -11,6 +12,7 @@ export const getServerSideProps = async ({ query: { page } }) => {
     props: { initialData: data }
   }
 }
+// eslint-disable-next-line max-lines-per-function
 const Users = (props) => {
   const { initialData } = props
   const { query } = useRouter()
@@ -19,13 +21,22 @@ const Users = (props) => {
     data: {
       result: users,
       meta: { count }
-    }
+    },
+    refetch,
   } = useQuery({
     queryKey: ["users", page],
     queryFn: () => apiClient("/users", { params: { page } }),
     initialData,
     enabled: false
   })
+  const { mutateAsync: deleteUser } = useMutation({
+    mutationFn: (userId) => apiClient.delete(`/users/${userId}`),
+  })
+  const handleClickDelete = async (event) => {
+    const userId = Number.parseInt(event.target.getAttribute("data-id"), 10)
+    await deleteUser(userId)
+    await refetch()
+  }
 
   return (
     <>
@@ -34,7 +45,7 @@ const Users = (props) => {
         <table className="w-full mt-10">
           <thead>
             <tr>
-              {["#", "First Name", "Last Name", "E-mail", "Account Type"].map(
+              {["#", "First Name", "Last Name", "E-mail", "Account Type", "🗑️"].map(
                 (label) => (
                   <th
                     key={label}
@@ -48,11 +59,12 @@ const Users = (props) => {
           <tbody>
             {users.map(({ id, firstName, lastName, email, userType }) => (
               <tr key={id} className="even:bg-green-100 text-center">
-                <td className="p-4">{id}</td>
-                <td className="p-4">{firstName}</td>
-                <td className="p-4">{lastName}</td>
-                <td className="p-4">{email}</td>
-                <td className="p-4">{userType}</td>
+                <td className="p-2">{id}</td>
+                <td className="p-2">{firstName}</td>
+                <td className="p-2">{lastName}</td>
+                <td className="p-2">{email}</td>
+                <td className="p-2">{userType}</td>
+                <td className="p-2"><Button btnLabel="Delete" data-id={id} onClick={handleClickDelete} /></td>
               </tr>
             ))}
           </tbody>
