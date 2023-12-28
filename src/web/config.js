@@ -18,7 +18,7 @@ const data = {
     baseUrl: process.env.NEXT_PUBLIC_API__BASE_URL,
   },
   ui: {
-    itemsPerPage: 5,
+    itemsPerPage: 6,
   },
   security: {
     session: {

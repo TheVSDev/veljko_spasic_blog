@@ -1,6 +1,13 @@
 import { validate } from "@/api/middlewares/validate"
 import mw from "@/api/mw"
-import { emailValidator, nameValidator, passwordValidator, typeValidator } from "@/utils/validators"
+import {
+  emailValidator,
+  nameValidator,
+  passwordValidator,
+  typeValidator,
+  pageValidator
+} from "@/utils/validators"
+import config from "@/web/config"
 
 const handle = mw({
   POST: [
@@ -10,15 +17,15 @@ const handle = mw({
         lastName: nameValidator,
         email: emailValidator,
         password: passwordValidator,
-        userType: typeValidator,
-      },
+        userType: typeValidator
+      }
     }),
     async ({
       input: {
-        body: { firstName, lastName, email, password, userType },
+        body: { firstName, lastName, email, password, userType }
       },
       models: { UserModel },
-      res,
+      res
     }) => {
       const user = await UserModel.query().findOne({ email })
 
@@ -39,12 +46,40 @@ const handle = mw({
         email,
         passwordHash,
         passwordSalt,
-        userType: toLowerCaseUserType,
+        userType: toLowerCaseUserType
       })
 
       res.send({ result: true })
-    },
+    }
   ],
+  GET: [
+    validate({
+      query: {
+        page: pageValidator
+      }
+    }),
+    async ({
+      res,
+      models: { UserModel },
+      input: {
+        query: { page }
+      }
+    }) => {
+      const query = UserModel.query()
+      const users = await query
+        .clone()
+        .limit(config.ui.itemsPerPage)
+        .offset((page - 1) * config.ui.itemsPerPage)
+      const [{ count }] = await query.clone().count()
+
+      res.send({
+        result: users,
+        meta: {
+          count
+        }
+      })
+    }
+  ]
 })
 
 export default handle

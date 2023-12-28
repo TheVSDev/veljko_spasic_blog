@@ -1,4 +1,4 @@
-import { string } from "yup"
+import { string, number } from "yup"
 
 export const nameValidator = string().required()
 export const emailValidator = string().email().required()
@@ -10,3 +10,4 @@ export const passwordValidator = string()
   )
   .required()
 export const typeValidator = string().matches(/^(Reader|Creator|Admin)$/iu, "Must be either 'Reader', 'Creator' or 'Admin'").required()
+export const pageValidator = number().integer().min(1).default(1).required()

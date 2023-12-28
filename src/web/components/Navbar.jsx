@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <header className="border-b-2 bg-slate-100">
       <div className="flex p-3">
-        <div className="text-2xl">
+        <div className="text-2xl mt-1">
           <Link href="/home" className="no-underline list-none">
             BLOG
           </Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
                 <MenuItem linkTo="/" listItemLabel="Profile" />
                 {isReader && <AccountTypeTag accountTypeLabel="READER" className="text-red-600 border-red-600" />}
                 {isCreator && <><MenuItem linkTo="/" listItemLabel="My posts" /><AccountTypeTag accountTypeLabel="CREATOR" className="text-blue-600 border-blue-600" /></>}
-                {isAdmin && <><MenuItem linkTo="/" listItemLabel="Users" /><AccountTypeTag accountTypeLabel="ADMIN" className="text-green-600 border-green-600" /></>}
+                {isAdmin && <><MenuItem linkTo="/users" listItemLabel="Users" /><AccountTypeTag accountTypeLabel="ADMIN" className="text-green-600 border-green-600" /></>}
                 <Button btnLabel="Sign out" onClick={signOut} />
               </>
             ) : (
