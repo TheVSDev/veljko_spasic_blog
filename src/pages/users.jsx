@@ -4,6 +4,7 @@ import apiClient from "@/web/services/apiClient"
 import Pagination from "@/web/components/Pagination"
 import Title from "@/web/components/Title"
 import Button from "@/web/components/Button"
+import Loader from "@/web/components/Loader"
 
 export const getServerSideProps = async ({ query: { page } }) => {
   const data = await apiClient("/users", { params: { page } })
@@ -52,6 +53,7 @@ const Users = (props) => {
   const { query } = useRouter()
   const page = Number.parseInt(query.page || 1, 10)
   const {
+    isFetching,
     data: {
       result: users,
       meta: { count }
@@ -75,6 +77,7 @@ const Users = (props) => {
     <>
       <Title titleLabel="Users" />
       <div className="relative">
+      {isFetching && <Loader />}
         <UserDisplayTable users={users} onDelete={handleClickDelete} />
         <Pagination count={count} page={page} className="mt-8" />
       </div>
