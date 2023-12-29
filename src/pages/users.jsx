@@ -12,7 +12,41 @@ export const getServerSideProps = async ({ query: { page } }) => {
     props: { initialData: data }
   }
 }
-// eslint-disable-next-line max-lines-per-function
+const UserDisplayTable = ({ users, onDelete }) => (
+  <table className="w-full mt-10">
+    <thead>
+      <tr>
+        {["#", "First Name", "Last Name", "E-mail", "Account Type", "🗑️"].map(
+          (label) => (
+            <th
+              key={label}
+              className="p-4 bg-green-300 text-center font-semibold">
+              {label}
+            </th>
+          )
+        )}
+      </tr>
+    </thead>
+    <tbody>
+      {users.map(({ id, firstName, lastName, email, userType }) => (
+        <tr key={id} className="even:bg-green-100 text-center">
+          <td className="p-2">{id}</td>
+          <td className="p-2">{firstName}</td>
+          <td className="p-2">{lastName}</td>
+          <td className="p-2">{email}</td>
+          <td className="p-2">{userType}</td>
+          <td className="p-2">
+            <Button
+              btnLabel="Delete"
+              data-id={id}
+              onClick={() => onDelete(id)}
+            />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)
 const Users = (props) => {
   const { initialData } = props
   const { query } = useRouter()
@@ -22,7 +56,7 @@ const Users = (props) => {
       result: users,
       meta: { count }
     },
-    refetch,
+    refetch
   } = useQuery({
     queryKey: ["users", page],
     queryFn: () => apiClient("/users", { params: { page } }),
@@ -30,10 +64,9 @@ const Users = (props) => {
     enabled: false
   })
   const { mutateAsync: deleteUser } = useMutation({
-    mutationFn: (userId) => apiClient.delete(`/users/${userId}`),
+    mutationFn: (userId) => apiClient.delete(`/users/${userId}`)
   })
-  const handleClickDelete = async (event) => {
-    const userId = Number.parseInt(event.target.getAttribute("data-id"), 10)
+  const handleClickDelete = async (userId) => {
     await deleteUser(userId)
     await refetch()
   }
@@ -42,33 +75,7 @@ const Users = (props) => {
     <>
       <Title titleLabel="Users" />
       <div className="relative">
-        <table className="w-full mt-10">
-          <thead>
-            <tr>
-              {["#", "First Name", "Last Name", "E-mail", "Account Type", "🗑️"].map(
-                (label) => (
-                  <th
-                    key={label}
-                    className="p-4 bg-green-300 text-center font-semibold">
-                    {label}
-                  </th>
-                )
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {users.map(({ id, firstName, lastName, email, userType }) => (
-              <tr key={id} className="even:bg-green-100 text-center">
-                <td className="p-2">{id}</td>
-                <td className="p-2">{firstName}</td>
-                <td className="p-2">{lastName}</td>
-                <td className="p-2">{email}</td>
-                <td className="p-2">{userType}</td>
-                <td className="p-2"><Button btnLabel="Delete" data-id={id} onClick={handleClickDelete} /></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <UserDisplayTable users={users} onDelete={handleClickDelete} />
         <Pagination count={count} page={page} className="mt-8" />
       </div>
     </>
