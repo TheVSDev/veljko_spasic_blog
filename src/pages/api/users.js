@@ -39,7 +39,6 @@ const handle = mw({
       const [passwordHash, passwordSalt] =
         await UserModel.hashPassword(password)
 
-      // Ensure that userType is properly handled in the insertAndFetch method
       await UserModel.query().insertAndFetch({
         firstName,
         lastName,

@@ -9,6 +9,6 @@ export const passwordValidator = string()
     "Password must contain 1 upper & 1 lower letter, 1 digit and 1 spe. char.",
   )
   .required()
-export const typeValidator = string().matches(/^(Reader|Creator|Admin)$/iu, "Must be either 'Reader', 'Creator' or 'Admin'").required()
+export const typeValidator = string().matches(/^(Reader|Creator)$/iu, "Must be either 'Reader' or 'Creator'").required()
 export const pageValidator = number().integer().min(1).default(1).required()
 export const idValidator = number().integer().min(1).required()

@@ -8,7 +8,6 @@ const getRandomUserType = () => {
 }
 
 export const seed = async (db) => {
-  await db("users").delete()
   await db("users").insert(
     [...Array(20)].map(() => ({
       firstName: faker.person.firstName(),
