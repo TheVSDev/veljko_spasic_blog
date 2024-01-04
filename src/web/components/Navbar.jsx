@@ -14,7 +14,7 @@ const Navbar = () => {
     <header className="border-b-2 bg-slate-100">
       <div className="flex p-3">
         <div className="text-2xl mt-1">
-          <Link href="/home" className="no-underline list-none">
+          <Link href="/" className="no-underline list-none">
             BLOG
           </Link>
         </div>
@@ -22,7 +22,7 @@ const Navbar = () => {
           <ul className="flex h-full gap-16 items-center list-none text-base">
             {session ? (
               <>
-                <MenuItem linkTo="/home" listItemLabel="Home" />
+                <MenuItem linkTo="/" listItemLabel="Home" />
                 <MenuItem linkTo="/" listItemLabel="Dashboard" />
                 <MenuItem linkTo="/" listItemLabel="Profile" />
                 {isReader && <AccountTypeTag accountTypeLabel="READER" className="text-red-600 border-red-600" />}
