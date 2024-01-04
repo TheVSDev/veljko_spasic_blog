@@ -31,7 +31,7 @@ const SignInPage = () => {
 
     saveSessionToken(jwt)
 
-    router.push("/home")
+    router.push("/")
   }
 
   return (
