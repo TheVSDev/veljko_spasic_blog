@@ -68,7 +68,6 @@ SECURITY__PASSWORD__PEPPER=<Secret code>
 4. Run `npx knex seed:run` to populate database
 5. Run `npm run dev` to start the development server
 
-Predefined admin account:
 After having started the development server, if you want to log in as an admin, use following credentials:
 - E-mail: `admin@admin.com`
 - Password: `Admin123456>`
