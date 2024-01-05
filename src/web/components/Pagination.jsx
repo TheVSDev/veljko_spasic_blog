@@ -29,6 +29,7 @@ const Pagination = (props) => {
       {...otherProps}>
       {page > 1 && (
         <>
+          <PaginationLink page={1}>&lt;&lt;</PaginationLink>
           <PaginationLink page={page - 1}>&lt;</PaginationLink>
           <PaginationLink page={page - 1}>{page - 1}</PaginationLink>
         </>
@@ -39,8 +40,8 @@ const Pagination = (props) => {
       {page < countPages && (
         <>
           <PaginationLink page={page + 1}>{page + 1}</PaginationLink>
-
           <PaginationLink page={page + 1}>&gt;</PaginationLink>
+          <PaginationLink page={countPages}>&gt;&gt;</PaginationLink>
         </>
       )}
     </div>
