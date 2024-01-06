@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { useSession } from "@/web/components/SessionContext"
 import MenuItem from "@/web/components/MenuItem"
 import Button from "@/web/components/Button"
@@ -14,8 +15,8 @@ const Navbar = () => {
     <header className="border-b-2 bg-slate-100">
       <div className="flex p-3">
         <div className="text-2xl mt-1">
-          <Link href="/" className="no-underline list-none">
-            BLOG
+          <Link href="/">
+            <Image src="/logo.png" alt="Blog logo" width={50} height={55} />
           </Link>
         </div>
         <nav className="ms-auto">
