@@ -6,6 +6,24 @@ import {
 } from "@/utils/validators"
 
 const handle = mw({
+  GET: [
+    validate({
+      query: {
+        userId: idValidator,
+      },
+    }),
+    async ({
+      models: { UserModel },
+      input: {
+        query: { userId },
+      },
+      res,
+    }) => {
+      const user = await UserModel.query().findById(userId).throwIfNotFound()
+
+      res.send(user)
+    },
+  ],
   DELETE: [
     auth,
     validate({
