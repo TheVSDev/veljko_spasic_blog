@@ -1,12 +1,15 @@
 import { useRouter } from "next/router"
 import { object, string } from "yup"
+import { useMutation } from "@tanstack/react-query"
 
 import { nameValidator } from "@/utils/validators"
-import Editor from "@/web/components/Editor"
+import apiClient from "@/web/services/apiClient"
 import Button from "@/web/components/Button"
 import SubmitButton from "@/web/components/SubmitButton"
 import Form from "@/web/components/Form"
 import FormField from "@/web/components/FormField"
+import SuccessMessage from "@/web/components/AlertMessages/SuccessMessage"
+import Editor from "@/web/components/Editor"
 
 const initialValues = {
   postTitle: "",
@@ -21,8 +24,17 @@ const CreatePostPage = () => {
   const handleCancel = () => {
     router.push("/my-posts")
   }
-  const handleSubmit = () => {
-    //
+  const { isSuccess, mutateAsync } = useMutation({
+    mutationFn: (values) => apiClient.post("/posts", values)
+  })
+  const handleSubmit = async (values) => {
+    await mutateAsync(values)
+
+    return true
+  }
+
+  if (isSuccess) {
+    return <SuccessMessage>Post created successfully</SuccessMessage>
   }
 
   return (
@@ -30,6 +42,7 @@ const CreatePostPage = () => {
       <Form
         initialValues={initialValues}
         validationSchema={validationSchema}
+
         onSubmit={handleSubmit}
         title="Create a post">
         <FormField
