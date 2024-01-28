@@ -1,15 +1,17 @@
-import { validate } from "@/api/middlewares/validate"
-import mw from "@/api/mw"
-import { nameValidator } from "@/utils/validators"
 import { string } from "yup"
+import mw from "@/api/mw"
+import config from "@/web/config"
+import { validate } from "@/api/middlewares/validate"
+import { nameValidator, pageValidator } from "@/utils/validators"
 import PostModel from "@/db/models/PostModel"
+import { HTTP_ERRORS } from "@/api/constants"
 
 const handle = mw({
   POST: [
     validate({
       body: {
         postTitle: nameValidator,
-        postBody: string(),
+        postBody: string()
       }
     }),
     async ({
@@ -31,10 +33,37 @@ const handle = mw({
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error("Error creating post:", error)
-        res.status(500).send({
+        res.status(HTTP_ERRORS.INTERNAL_SERVER_ERROR).send({
           error: "Internal Server Error"
         })
       }
+    }
+  ],
+  GET: [
+    validate({
+      query: {
+        page: pageValidator
+      }
+    }),
+    async ({
+      res,
+      input: {
+        query: { page }
+      }
+    }) => {
+      const query = PostModel.query()
+      const posts = await query
+        .clone()
+        .limit(config.ui.itemsPerPage)
+        .offset((page - 1) * config.ui.itemsPerPage)
+      const [{ count }] = await query.clone().count()
+
+      res.send({
+        result: posts,
+        meta: {
+          count
+        }
+      })
     }
   ]
 })
