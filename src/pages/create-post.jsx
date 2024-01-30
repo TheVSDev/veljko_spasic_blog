@@ -9,7 +9,7 @@ import SubmitButton from "@/web/components/SubmitButton"
 import Form from "@/web/components/Form"
 import FormField from "@/web/components/FormField"
 import SuccessMessage from "@/web/components/AlertMessages/SuccessMessage"
-import Editor from "@/web/components/Editor"
+import Textarea from "@/web/components/Textarea"
 
 const initialValues = {
   postTitle: "",
@@ -42,7 +42,6 @@ const CreatePostPage = () => {
       <Form
         initialValues={initialValues}
         validationSchema={validationSchema}
-
         onSubmit={handleSubmit}
         title="Create a post">
         <FormField
@@ -52,7 +51,11 @@ const CreatePostPage = () => {
           label="Title"
         />
         <label className="font-semibold text-sm">Post Body</label>
-        <Editor name="postBody" />
+        <Textarea
+          name="postBody"
+          placeholder="Write your post here..."
+          className="w-full h-96"
+        />
         <div className="flex flex-row justify-center gap-7">
           <SubmitButton btnLabel="Publish" onSubmit={handleSubmit} />
           <Button
