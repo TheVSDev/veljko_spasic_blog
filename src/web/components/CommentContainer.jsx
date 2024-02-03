@@ -1,8 +1,8 @@
 import { useState } from "react"
-import Button from "@/web/components/Button"
 import Form from "@/web/components/Form"
 import Textarea from "@/web/components/Textarea"
 import SubmitButton from "@/web/components/SubmitButton"
+import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/solid"
 
 const initialValues = {
   comment: ""
@@ -15,14 +15,13 @@ const CommentContainer = () => {
   const handleSubmit = () => {
     //
   }
+  const CommentIcon = ChatBubbleOvalLeftIcon
 
   return (
     <div className="mt-4">
-      <Button
-        btnLabel="Comments"
-        variant="secondary"
-        onClick={toggleCommentSection}
-      />
+      <button onClick={toggleCommentSection}>
+        <CommentIcon className="w-[30px]" />
+      </button>
       {showCommentSection && (
         <div className="mt-4 mb-4 border-2 border-green-500 rounded-lg p-4 w-[80%] mx-auto flex flex-col items-center shadow-lg">
           <Form initialValues={initialValues} onSubmit={handleSubmit}>
