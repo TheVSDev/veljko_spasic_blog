@@ -41,7 +41,7 @@ const MyPosts = (props) => {
       </Link>
       <div className="relative">
         {isFetching && <Loader />}
-        <PostContainer posts={posts} />
+        <PostContainer posts={posts} editIconVariant="edit" />
         <Pagination count={count} page={page} className="m-8" />
       </div>
     </>
