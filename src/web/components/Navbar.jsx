@@ -1,9 +1,11 @@
 import Link from "next/link"
 import Image from "next/image"
+
 import { useSession } from "@/web/components/SessionContext"
 import MenuItem from "@/web/components/MenuItem"
 import Button from "@/web/components/Button"
 import AccountTypeTag from "@/web/components/AccountTypeTag"
+import Search from "@/web/components/Search"
 
 const Navbar = () => {
   const { session, signOut } = useSession()
@@ -23,6 +25,7 @@ const Navbar = () => {
           <ul className="flex h-full gap-16 items-center list-none text-base">
             {session ? (
               <>
+                <Search />
                 <MenuItem linkTo="/" listItemLabel="Home" />
                 <MenuItem linkTo="/" listItemLabel="Dashboard" />
                 <MenuItem linkTo="/profile" listItemLabel="Profile" />
