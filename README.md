@@ -28,9 +28,11 @@ After having started the development server, you can use the following credentia
 **Admin**
 - E-mail: `admin@admin.com`
 - Password: `Admin123456>`
+
 **Creator**
 - E-mail: `creator@creator.com`
 - Password: `Creator123456>`
+
 **Reader**
 - E-mail: `reader@reader.com`
 - Password: `Reader123456>`
