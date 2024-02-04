@@ -1,5 +1,6 @@
 import { useRouter } from "next/router"
 import { useQuery, useMutation } from "@tanstack/react-query"
+
 import apiClient from "@/web/services/apiClient"
 import Pagination from "@/web/components/Pagination"
 import Title from "@/web/components/Title"

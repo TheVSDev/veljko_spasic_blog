@@ -1,12 +1,10 @@
 import clsx from "clsx"
 import { useState } from "react"
-import { PencilIcon, ChatBubbleOvalLeftIcon } from "@heroicons/react/24/solid"
 import CommentContainer from "@/web/components/CommentContainer"
+import Icon from "@/web/components/Icon"
 
-const CommentIcon = ChatBubbleOvalLeftIcon
-const EditIcon = PencilIcon
 const editIconVariants = {
-  edit: "w-[30px]",
+  edit: "w-[30px] ml-4",
   noEdit: "hidden"
 }
 const PostContainer = (props) => {
@@ -30,9 +28,10 @@ const PostContainer = (props) => {
           <p className="p-2">{postBody}</p>
           <div className="flex items-center">
             <button onClick={() => toggleCommentSection(index)}>
-              <CommentIcon className="w-[30px]" />
+              <Icon icon="comment" className="w-[30px]" />
             </button>
-            <EditIcon
+            <Icon
+              icon="edit"
               className={clsx(editIconVariants[editIconVariant])}
               {...otherProps}
             />

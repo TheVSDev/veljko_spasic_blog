@@ -1,7 +1,6 @@
 import { useRouter } from "next/router"
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
+import Icon from "@/web/components/Icon"
 
-const SearchIcon = MagnifyingGlassIcon
 const Search = () => {
   const router = useRouter()
   const handleClick = () => {
@@ -12,7 +11,7 @@ const Search = () => {
   return (
     <div className="relative">
       <button onClick={handleClick}>
-        <SearchIcon className="absolute top-1/2 right-2 transform -translate-y-1/2 w-7" />
+        <Icon icon="search" className="absolute top-1/2 right-2 transform -translate-y-1/2 w-7" />
       </button>
       <input
         type="text"
