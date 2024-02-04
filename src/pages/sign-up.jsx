@@ -1,4 +1,3 @@
-// Imports
 import { object } from "yup"
 import { useMutation } from "@tanstack/react-query"
 import Link from "next/link"
@@ -17,7 +16,6 @@ import {
 import apiClient from "@/web/services/apiClient"
 import SuccessMessage from "@/web/components/AlertMessages/SuccessMessage"
 
-// Form functions
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -32,7 +30,6 @@ const validationSchema = object({
   password: passwordValidator.label("Password"),
   userType: typeValidator.label("Account type")
 })
-// Internal components
 const Success = () => (
   <Container className="w-[600px] ml-[30%] mt-[4%] border-none flex flex-col gap-7">
     <SuccessMessage>Account created successfully</SuccessMessage>
@@ -57,7 +54,6 @@ const FullNameFormFields = () => (
     />
   </>
 )
-// Sign up page
 const SignUpPage = () => {
   const { isSuccess, mutateAsync } = useMutation({
     mutationFn: (values) => apiClient.post("/users", values)

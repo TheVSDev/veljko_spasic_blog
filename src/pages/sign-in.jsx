@@ -1,4 +1,3 @@
-// Imports
 import { object } from "yup"
 import { useRouter } from "next/router"
 import { useMutation } from "@tanstack/react-query"

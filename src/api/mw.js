@@ -1,4 +1,3 @@
-// Imports
 import knex from "knex"
 import { NotFoundError as ObjectionNotFoundError } from "objection"
 
@@ -10,7 +9,6 @@ import methodNotAllowed from "@/api/middlewares/methodNotAllowed"
 import BaseModel from "@/db/models/BaseModel"
 import UserModel from "@/db/models/UserModel"
 
-// Middleware
 const mw = (handlers) => async (req, res) => {
   const middlewares = handlers[req.method]
   const sanitizedMiddlewares = [log, ...(middlewares || [methodNotAllowed])]

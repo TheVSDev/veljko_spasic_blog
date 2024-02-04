@@ -1,4 +1,3 @@
-// Imports
 import { NextResponse } from "next/server"
 import ms from "ms"
 import jsonwebtoken from "jsonwebtoken"
@@ -10,7 +9,6 @@ import { emailValidator, passwordValidator } from "@/utils/validators"
 import auth from "@/api/middlewares/auth"
 import { validate } from "@/api/middlewares/validate"
 
-// Methods handler
 const handle = mw({
   POST: [
     validate({
