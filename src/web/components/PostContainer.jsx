@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { useState } from "react"
-import CommentContainer from "@/web/components/CommentContainer"
 import { PencilIcon, ChatBubbleOvalLeftIcon } from "@heroicons/react/24/solid"
+import CommentContainer from "@/web/components/CommentContainer"
 
 const CommentIcon = ChatBubbleOvalLeftIcon
 const EditIcon = PencilIcon
