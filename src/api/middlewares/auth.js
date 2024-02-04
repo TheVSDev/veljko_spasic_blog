@@ -5,15 +5,15 @@ import config from "@/config"
 const auth = async (ctx) => {
   const {
     req: {
-      cookies: { [config.security.jwt.cookieName]: sessionToken },
+      cookies: { [config.security.jwt.cookieName]: sessionToken }
     },
-    next,
+    next
   } = ctx
 
   try {
     const { payload } = jsonwebtoken.verify(
       sessionToken,
-      config.security.jwt.secret,
+      config.security.jwt.secret
     )
 
     ctx.session = payload

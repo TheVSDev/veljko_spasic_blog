@@ -9,7 +9,7 @@ const handle = mw({
     validate({
       body: {
         comment: string(),
-        postId: idValidator,
+        postId: idValidator
       }
     }),
     async ({
@@ -22,14 +22,16 @@ const handle = mw({
       try {
         const insertedComment = await CommentModel.query().insertAndFetch({
           comment,
-          postId,
+          postId
         })
 
         res.send({ result: true, insertedComment })
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error("Error inserting comment:", error)
-        res.status(HTTP_ERRORS.INTERNAL_SERVER_ERROR).send({ result: false, error: "Internal Server Error" })
+        res
+          .status(HTTP_ERRORS.INTERNAL_SERVER_ERROR)
+          .send({ result: false, error: "Internal Server Error" })
       }
     }
   ],
@@ -52,8 +54,7 @@ const handle = mw({
           .send({ result: false, error: "Internal Server Error" })
       }
     }
-  ],
-
+  ]
 })
 
 export default handle

@@ -78,7 +78,7 @@ const Users = (props) => {
     <>
       <Title titleLabel="Users" />
       <div className="relative">
-      {isFetching && <Loader />}
+        {isFetching && <Loader />}
         <UserDisplayTable users={users} onDelete={handleClickDelete} />
         <Pagination count={count} page={page} className="mt-8" />
       </div>

@@ -6,7 +6,24 @@ import MenuItem from "@/web/components/MenuItem"
 import Button from "@/web/components/Button"
 import AccountTypeTag from "@/web/components/AccountTypeTag"
 import Search from "@/web/components/Search"
-
+const TagReader = () => (
+  <AccountTypeTag
+    accountTypeLabel="READER"
+    className="text-red-600 border-red-600"
+  />
+)
+const TagCreator = () => (
+  <AccountTypeTag
+    accountTypeLabel="CREATOR"
+    className="text-blue-600 border-blue-600"
+  />
+)
+const TagAdmin = () => (
+  <AccountTypeTag
+    accountTypeLabel="ADMIN"
+    className="text-green-600 border-green-600"
+  />
+)
 const Navbar = () => {
   const { session, signOut } = useSession()
   const isReader = session?.userType === "reader"
@@ -29,9 +46,19 @@ const Navbar = () => {
                 <MenuItem linkTo="/" listItemLabel="Home" />
                 <MenuItem linkTo="/" listItemLabel="Dashboard" />
                 <MenuItem linkTo="/profile" listItemLabel="Profile" />
-                {isReader && <AccountTypeTag accountTypeLabel="READER" className="text-red-600 border-red-600" />}
-                {isCreator && <><MenuItem linkTo="/my-posts" listItemLabel="My posts" /><AccountTypeTag accountTypeLabel="CREATOR" className="text-blue-600 border-blue-600" /></>}
-                {isAdmin && <><MenuItem linkTo="/users" listItemLabel="Users" /><AccountTypeTag accountTypeLabel="ADMIN" className="text-green-600 border-green-600" /></>}
+                {isReader && <TagReader />}
+                {isCreator && (
+                  <>
+                    <MenuItem linkTo="/my-posts" listItemLabel="My posts" />
+                    <TagCreator />
+                  </>
+                )}
+                {isAdmin && (
+                  <>
+                    <MenuItem linkTo="/users" listItemLabel="Users" />
+                    <TagAdmin />
+                  </>
+                )}
                 <Button btnLabel="Sign out" onClick={signOut} />
               </>
             ) : (

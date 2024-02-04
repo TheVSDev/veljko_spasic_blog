@@ -5,7 +5,7 @@ import {
   InformationCircleIcon,
   PencilIcon,
   ChatBubbleOvalLeftIcon,
-  MagnifyingGlassIcon,
+  MagnifyingGlassIcon
 } from "@heroicons/react/24/solid"
 
 const icons = {
@@ -14,7 +14,7 @@ const icons = {
   success: CheckCircleIcon,
   edit: PencilIcon,
   comment: ChatBubbleOvalLeftIcon,
-  search: MagnifyingGlassIcon,
+  search: MagnifyingGlassIcon
 }
 const Icon = (props) => {
   const { icon = "", className, ...otherProps } = props

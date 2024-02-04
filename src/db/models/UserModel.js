@@ -10,7 +10,7 @@ class UserModel extends BaseModel {
 
   static async hashPassword(
     password,
-    salt = randomBytes(config.security.password.keylen).toString("hex"),
+    salt = randomBytes(config.security.password.keylen).toString("hex")
   ) {
     return [
       (
@@ -19,10 +19,10 @@ class UserModel extends BaseModel {
           salt + config.security.password.pepper,
           config.security.password.iterations,
           config.security.password.keylen,
-          config.security.password.digest,
+          config.security.password.digest
         )
       ).toString("hex"),
-      salt,
+      salt
     ]
   }
 }

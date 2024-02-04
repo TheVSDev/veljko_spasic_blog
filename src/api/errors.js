@@ -7,7 +7,7 @@ export class PublicError extends Error {
   toJSON() {
     return {
       message: this.message,
-      httpCode: this.httpCode,
+      httpCode: this.httpCode
     }
   }
 }

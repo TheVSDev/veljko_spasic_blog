@@ -14,15 +14,15 @@ const handle = mw({
     validate({
       body: {
         email: emailValidator,
-        password: passwordValidator,
-      },
+        password: passwordValidator
+      }
     }),
     async ({
       input: {
-        body: { email, password },
+        body: { email, password }
       },
       models: { UserModel },
-      res,
+      res
     }) => {
       const user = await UserModel.query().findOne({ email })
 
@@ -32,7 +32,7 @@ const handle = mw({
 
       const [passwordHash] = await UserModel.hashPassword(
         password,
-        user.passwordSalt,
+        user.passwordSalt
       )
 
       if (passwordHash !== user.passwordHash) {
@@ -43,24 +43,23 @@ const handle = mw({
         {
           payload: {
             id: user.id,
-            userType: user.userType,
-          },
+            userType: user.userType
+          }
         },
         config.security.jwt.secret,
-        { expiresIn: config.security.jwt.expiresIn },
+        { expiresIn: config.security.jwt.expiresIn }
       )
       const cookie = new NextResponse().cookies.set({
         name: config.security.jwt.cookieName,
         value: jwt,
         expires: Date.now() + ms(config.security.jwt.expiresIn),
         httpOnly: true,
-        secure: config.security.jwt.secure,
+        secure: config.security.jwt.secure
       })
 
       res.setHeader("set-cookie", cookie.toString()).send({ result: jwt })
-    },
+    }
   ],
-
   DELETE: [
     auth,
     ({ res }) => {
@@ -69,12 +68,12 @@ const handle = mw({
         value: "",
         expires: 0,
         httpOnly: true,
-        secure: config.security.jwt.secure,
+        secure: config.security.jwt.secure
       })
 
       res.setHeader("set-cookie", cookie.toString()).send({ result: true })
-    },
-  ],
+    }
+  ]
 })
 
 export default handle

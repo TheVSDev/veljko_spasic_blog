@@ -6,10 +6,7 @@ const Form = (props) => {
 
   return (
     <Formik {...otherProps}>
-      <FormikForm
-        noValidate
-        className="flex flex-col gap-4 p-5"
-      >
+      <FormikForm noValidate className="flex flex-col gap-4 p-5">
         <Title titleLabel={title} />
         {children}
       </FormikForm>

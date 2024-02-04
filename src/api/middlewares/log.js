@@ -10,7 +10,7 @@ const log = async ({ req, res, next }) => {
   console.info(
     `${colors.bgWhite(res.statusCode)} ${colors.green(req.method)} ${req.url} ${
       Date.now() - now
-    }ms`,
+    }ms`
   )
 }
 

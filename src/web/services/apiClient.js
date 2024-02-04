@@ -8,7 +8,7 @@ export class ApiClientError extends Error {
     super(err)
 
     const {
-      response: { data },
+      response: { data }
     } = err
 
     this.data = data
@@ -26,7 +26,7 @@ const createApiClient =
   (method = "GET") =>
   (...args) => {
     const client = axios.create({
-      baseURL: config.api.baseUrl,
+      baseURL: config.api.baseUrl
     })
 
     return client[method.toLowerCase()](...args)

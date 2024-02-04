@@ -7,7 +7,11 @@ import ErrorMessage from "@/web/components/AlertMessages/ErrorMessage"
 
 const Profile = () => {
   const { session } = useSession()
-  const { data: user, isLoading, isError } = useQuery({
+  const {
+    data: user,
+    isLoading,
+    isError
+  } = useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
       try {
@@ -22,7 +26,7 @@ const Profile = () => {
         throw new Error("User information not available.")
       }
     },
-    enabled: Boolean(session),
+    enabled: Boolean(session)
   })
 
   if (isLoading) {

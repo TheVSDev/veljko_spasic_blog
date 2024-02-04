@@ -20,7 +20,7 @@ const mw = (handlers) => async (req, res) => {
   const ctx = {
     db,
     models: {
-      UserModel,
+      UserModel
     },
     req,
     res,
@@ -29,7 +29,7 @@ const mw = (handlers) => async (req, res) => {
       currentMiddlewareIndex += 1
 
       await middleware(ctx)
-    },
+    }
   }
 
   try {

@@ -11,7 +11,10 @@ const Search = () => {
   return (
     <div className="relative">
       <button onClick={handleClick}>
-        <Icon icon="search" className="absolute top-1/2 right-2 transform -translate-y-1/2 w-7" />
+        <Icon
+          icon="search"
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 w-7"
+        />
       </button>
       <input
         type="text"

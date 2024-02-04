@@ -42,7 +42,7 @@ export const SessionProvider = (props) => {
       value={{
         session,
         saveSessionToken,
-        signOut,
+        signOut
       }}
     />
   )
