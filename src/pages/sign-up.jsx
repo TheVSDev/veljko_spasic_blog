@@ -2,11 +2,11 @@ import { object } from "yup"
 import { useMutation } from "@tanstack/react-query"
 import Link from "next/link"
 
-import Container from "@/web/components/Container"
-import Form from "@/web/components/Form"
-import FormField from "@/web/components/FormField"
-import SubmitButton from "@/web/components/SubmitButton"
-import Button from "@/web/components/Button"
+import Container from "@/web/components/ui/containers/Container"
+import Form from "@/web/components/ui/forms/Form"
+import FormField from "@/web/components/ui/forms/FormField"
+import SubmitButton from "@/web/components/ui/buttons/SubmitButton"
+import Button from "@/web/components/ui/buttons/Button"
 import {
   nameValidator,
   emailValidator,
@@ -14,7 +14,7 @@ import {
   typeValidator
 } from "@/utils/validators"
 import apiClient from "@/web/services/apiClient"
-import SuccessMessage from "@/web/components/AlertMessages/SuccessMessage"
+import SuccessMessage from "@/web/components/ui/alert-messages/SuccessMessage"
 
 const initialValues = {
   firstName: "",

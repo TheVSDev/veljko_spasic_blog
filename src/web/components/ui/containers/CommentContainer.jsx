@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query"
 
-import Form from "@/web/components/Form"
-import Textarea from "@/web/components/Textarea"
-import SubmitButton from "@/web/components/SubmitButton"
+import Form from "@/web/components/ui/forms/Form"
+import Textarea from "@/web/components/ui/forms/Textarea"
+import SubmitButton from "@/web/components/ui/buttons/SubmitButton"
 import apiClient from "@/web/services/apiClient"
 
 const initialValues = {

@@ -1,4 +1,4 @@
-import Alert from "@/web/components/Alert"
+import Alert from "@/web/components/ui/Alert"
 
 const ErrorMessage = ({ error, ...otherProps }) =>
   error ? (

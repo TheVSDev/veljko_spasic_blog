@@ -1,4 +1,4 @@
-import Button from "@/web/components/Button"
+import Button from "@/web/components/ui/buttons/Button"
 
 const SubmitButton = (props) => {
   const { ...otherProps } = props

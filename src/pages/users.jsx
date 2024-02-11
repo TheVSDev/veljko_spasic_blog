@@ -2,10 +2,10 @@ import { useRouter } from "next/router"
 import { useQuery, useMutation } from "@tanstack/react-query"
 
 import apiClient from "@/web/services/apiClient"
-import Pagination from "@/web/components/Pagination"
-import Title from "@/web/components/Title"
-import Button from "@/web/components/Button"
-import Loader from "@/web/components/Loader"
+import Pagination from "@/web/components/ui/navigation/Pagination"
+import Title from "@/web/components/ui/Title"
+import Button from "@/web/components/ui/buttons/Button"
+import Loader from "@/web/components/ui/Loader"
 
 export const getServerSideProps = async ({ query: { page } }) => {
   const data = await apiClient("/users", { params: { page } })

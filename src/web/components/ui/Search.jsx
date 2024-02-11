@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import Icon from "@/web/components/Icon"
+import Icon from "@/web/components/ui/Icon"
 
 const Search = () => {
   const router = useRouter()

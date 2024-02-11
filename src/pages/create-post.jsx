@@ -4,12 +4,12 @@ import { useMutation } from "@tanstack/react-query"
 
 import { nameValidator } from "@/utils/validators"
 import apiClient from "@/web/services/apiClient"
-import Button from "@/web/components/Button"
-import SubmitButton from "@/web/components/SubmitButton"
-import Form from "@/web/components/Form"
-import FormField from "@/web/components/FormField"
-import SuccessMessage from "@/web/components/AlertMessages/SuccessMessage"
-import Textarea from "@/web/components/Textarea"
+import Button from "@/web/components/ui/buttons/Button"
+import SubmitButton from "@/web/components/ui/buttons/SubmitButton"
+import Form from "@/web/components/ui/forms/Form"
+import FormField from "@/web/components/ui/forms/FormField"
+import SuccessMessage from "@/web/components/ui/alert-messages/SuccessMessage"
+import Textarea from "@/web/components/ui/forms/Textarea"
 
 const initialValues = {
   postTitle: "",

@@ -2,14 +2,14 @@ import { object } from "yup"
 import { useRouter } from "next/router"
 import { useMutation } from "@tanstack/react-query"
 
-import Container from "@/web/components/Container"
-import Form from "@/web/components/Form"
-import FormField from "@/web/components/FormField"
-import SubmitButton from "@/web/components/SubmitButton"
+import Container from "@/web/components/ui/containers/Container"
+import Form from "@/web/components/ui/forms/Form"
+import FormField from "@/web/components/ui/forms/FormField"
+import SubmitButton from "@/web/components/ui/buttons/SubmitButton"
 import { emailValidator, passwordValidator } from "@/utils/validators"
 import apiClient from "@/web/services/apiClient"
 import { useSession } from "@/web/components/SessionContext"
-import ErrorMessage from "@/web/components/AlertMessages/ErrorMessage"
+import ErrorMessage from "@/web/components/ui/alert-messages/ErrorMessage"
 
 const initialValues = {
   email: "",

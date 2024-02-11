@@ -1,5 +1,5 @@
 import { Formik, Form as FormikForm } from "formik"
-import Title from "@/web/components/Title"
+import Title from "@/web/components/ui/Title"
 
 const Form = (props) => {
   const { children, title, ...otherProps } = props

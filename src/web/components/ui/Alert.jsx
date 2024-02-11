@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import Icon from "@/web/components/Icon"
+import Icon from "@/web/components/ui/Icon"
 
 const variants = {
   info: { icon: "info", className: "bg-blue-200 text-blue-800" },

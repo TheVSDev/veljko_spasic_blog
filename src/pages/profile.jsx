@@ -1,9 +1,9 @@
 import { useSession } from "@/web/components/SessionContext"
 import { useQuery } from "@tanstack/react-query"
 import apiClient from "@/web/services/apiClient"
-import Title from "@/web/components/Title"
-import Loader from "@/web/components/Loader"
-import ErrorMessage from "@/web/components/AlertMessages/ErrorMessage"
+import Title from "@/web/components/ui/Title"
+import Loader from "@/web/components/ui/Loader"
+import ErrorMessage from "@/web/components/ui/alert-messages/ErrorMessage"
 
 const Profile = () => {
   const { session } = useSession()

@@ -1,8 +1,8 @@
 import clsx from "clsx"
 import { useState } from "react"
 import { formatDateTimeShort } from "@/utils/formatters"
-import CommentContainer from "@/web/components/CommentContainer"
-import Icon from "@/web/components/Icon"
+import CommentContainer from "@/web/components/ui/containers/CommentContainer"
+import Icon from "@/web/components/ui/Icon"
 
 const editIconVariants = {
   edit: "w-[30px] ml-4",

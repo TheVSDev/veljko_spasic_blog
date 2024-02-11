@@ -2,10 +2,11 @@ import Link from "next/link"
 import Image from "next/image"
 
 import { useSession } from "@/web/components/SessionContext"
-import MenuItem from "@/web/components/MenuItem"
-import Button from "@/web/components/Button"
-import AccountTypeTag from "@/web/components/AccountTypeTag"
-import Search from "@/web/components/Search"
+import MenuItem from "@/web/components/ui/MenuItem"
+import Button from "@/web/components/ui/buttons/Button"
+import AccountTypeTag from "@/web/components/ui/AccountTypeTag"
+import Search from "@/web/components/ui/Search"
+
 const TagReader = () => (
   <AccountTypeTag
     accountTypeLabel="READER"
