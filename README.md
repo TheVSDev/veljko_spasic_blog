@@ -23,16 +23,3 @@ SECURITY__PASSWORD__PEPPER=<Secret code>
 3. Run `npx knex migrate:latest` to update database
 4. Run `npx knex seed:run` to populate database
 5. Run `npm run dev` to start the development server
-
-After having started the development server, you can use the following credentials for the precreated accounts:
-**Admin**
-- E-mail: `admin@admin.com`
-- Password: `Admin123456>`
-
-**Creator**
-- E-mail: `creator@creator.com`
-- Password: `Creator123456>`
-
-**Reader**
-- E-mail: `reader@reader.com`
-- Password: `Reader123456>`

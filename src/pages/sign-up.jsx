@@ -91,8 +91,8 @@ const SignUpPage = () => {
         <FormField
           name="userType"
           type="text"
-          placeholder="Reader / Creator "
-          label="Account type (Reader or Creator)"
+          placeholder="Reader / Creator / Admin"
+          label="Account type (Reader, Creator or Admin)"
         />
         <SubmitButton btnLabel="Create account" onSubmit={handleSubmit} />
       </Form>
