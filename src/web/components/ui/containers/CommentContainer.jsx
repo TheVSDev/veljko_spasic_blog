@@ -6,14 +6,16 @@ import SubmitButton from "@/web/components/ui/buttons/SubmitButton"
 import apiClient from "@/web/services/apiClient"
 
 const initialValues = {
-  comment: ""
+  comment: "",
+  postId: 0
 }
-const CommentContainer = () => {
+const CommentContainer = ({ postId }) => {
   const { mutateAsync } = useMutation({
     mutationFn: (values) => apiClient.post("/comments", values)
   })
-  const handleSubmit = async (values) => {
-    await mutateAsync(values)
+  const handleSubmit = async (values, { resetForm }) => {
+    await mutateAsync({ ...values, postId })
+    resetForm()
 
     return true
   }

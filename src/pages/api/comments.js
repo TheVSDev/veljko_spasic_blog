@@ -3,6 +3,7 @@ import { HTTP_ERRORS } from "@/api/constants"
 import { validate } from "@/api/middlewares/validate"
 import mw from "@/api/mw"
 import { idValidator } from "@/utils/validators"
+import CommentModel from "@/db/models/CommentModel"
 
 const handle = mw({
   POST: [
@@ -16,7 +17,6 @@ const handle = mw({
       input: {
         body: { comment, postId }
       },
-      models: { CommentModel },
       res
     }) => {
       try {
@@ -31,7 +31,11 @@ const handle = mw({
         console.error("Error inserting comment:", error)
         res
           .status(HTTP_ERRORS.INTERNAL_SERVER_ERROR)
-          .send({ result: false, error: "Internal Server Error" })
+          .send({
+            result: false,
+            error: "Internal Server Error",
+            details: error.message
+          })
       }
     }
   ],
@@ -40,7 +44,6 @@ const handle = mw({
       input: {
         query: { postId }
       },
-      models: { CommentModel },
       res
     }) => {
       try {

@@ -19,7 +19,7 @@ const PostContainer = (props) => {
 
   return (
     <div className="w-full mt-10 grid place-items-center">
-      {posts.map(({ postTitle, postBody, createdAt }, index) => (
+      {posts.map(({ id, postTitle, postBody, createdAt }, index) => (
         <div
           key={postTitle}
           className="mt-10 border-2 border-black rounded-lg w-[1000px] shadow-lg">
@@ -40,7 +40,7 @@ const PostContainer = (props) => {
               {...otherProps}
             />
           </div>
-          {commentSections[index] && <CommentContainer />}
+          {commentSections[index] && <CommentContainer postId={id} />}
         </div>
       ))}
     </div>
