@@ -29,13 +29,11 @@ const handle = mw({
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error("Error inserting comment:", error)
-        res
-          .status(HTTP_ERRORS.INTERNAL_SERVER_ERROR)
-          .send({
-            result: false,
-            error: "Internal Server Error",
-            details: error.message
-          })
+        res.status(HTTP_ERRORS.INTERNAL_SERVER_ERROR).send({
+          result: false,
+          error: "Internal Server Error",
+          details: error.message
+        })
       }
     }
   ],
