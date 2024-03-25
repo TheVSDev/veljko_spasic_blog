@@ -16,15 +16,9 @@ const Profile = () => {
             {session?.firstName} {session?.lastName}
           </span>
         </h2>
+        <p>E-mail: {session?.email}</p>
         <p>
-          <span className="font-semibold">E-mail:</span> {session?.email}
-        </p>
-        <p className="mt-5">
-          <span className="font-semibold">Account type:</span>{" "}
-          <AccountTypeTag
-            accountTypeLabel={session?.userType}
-            className="text-[#0da839]"
-          />
+          Account type: <AccountTypeTag accountTypeLabel={session?.userType} />
         </p>
       </Container>
     </div>
