@@ -10,6 +10,7 @@ import Form from "@/web/components/ui/forms/Form"
 import FormField from "@/web/components/ui/forms/FormField"
 import SuccessMessage from "@/web/components/ui/alert-messages/SuccessMessage"
 import Textarea from "@/web/components/ui/forms/Textarea"
+import { useSession } from "@/web/components/SessionContext"
 
 const initialValues = {
   postTitle: "",
@@ -21,11 +22,13 @@ const validationSchema = object({
 })
 const CreatePostPage = () => {
   const router = useRouter()
+  const { session } = useSession()
+  const userId = session?.id
   const handleCancel = () => {
     router.push("/my-posts")
   }
   const { isSuccess, mutateAsync } = useMutation({
-    mutationFn: (values) => apiClient.post("/posts", values)
+    mutationFn: (values) => apiClient.post("/posts", { ...values, userId })
   })
   const handleSubmit = async (values) => {
     await mutateAsync(values)

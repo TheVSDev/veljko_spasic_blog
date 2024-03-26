@@ -3,6 +3,12 @@ export const up = async (db) => {
     table.increments("id")
     table.text("postTitle").notNullable()
     table.text("postBody").notNullable()
+    table
+      .integer("userId")
+      .notNullable()
+      .references("id")
+      .inTable("users")
+      .onDelete("CASCADE")
   })
 }
 

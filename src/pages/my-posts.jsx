@@ -8,6 +8,7 @@ import Button from "@/web/components/ui/buttons/Button"
 import Loader from "@/web/components/ui/Loader"
 import PostContainer from "@/web/components/ui/containers/PostContainer"
 import Pagination from "@/web/components/ui/navigation/Pagination"
+import { useSession } from "@/web/components/SessionContext"
 
 export const getServerSideProps = async ({ query: { page } }) => {
   const data = await apiClient("/posts", { params: { page } })
@@ -18,11 +19,12 @@ export const getServerSideProps = async ({ query: { page } }) => {
 }
 const MyPosts = (props) => {
   const { initialData } = props
+  const { session } = useSession()
   const { query } = useRouter()
   const page = Number.parseInt(query.page || 1, 10)
   const {
     isFetching,
-    data: { result: posts, meta: { count } } = {
+    data: { result: allPosts, meta: { count } } = {
       result: [],
       meta: { count: 0 }
     }
@@ -32,6 +34,7 @@ const MyPosts = (props) => {
     initialData,
     enabled: true
   })
+  const posts = allPosts.filter((post) => post.userId === session?.id)
 
   return (
     <>

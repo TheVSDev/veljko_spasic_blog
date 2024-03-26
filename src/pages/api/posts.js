@@ -2,7 +2,7 @@ import { string } from "yup"
 import mw from "@/api/mw"
 import config from "@/web/config"
 import { validate } from "@/api/middlewares/validate"
-import { nameValidator, pageValidator } from "@/utils/validators"
+import { idValidator, nameValidator, pageValidator } from "@/utils/validators"
 import PostModel from "@/db/models/PostModel"
 import { HTTP_ERRORS } from "@/api/constants"
 
@@ -11,19 +11,21 @@ const handle = mw({
     validate({
       body: {
         postTitle: nameValidator,
-        postBody: string()
+        postBody: string(),
+        userId: idValidator
       }
     }),
     async ({
       res,
       input: {
-        body: { postTitle, postBody }
+        body: { postTitle, postBody, userId }
       }
     }) => {
       try {
         const post = await PostModel.query().insert({
           postTitle,
-          postBody
+          postBody,
+          userId
         })
 
         res.send({
