@@ -8,6 +8,12 @@ export const up = async (db) => {
       .references("id")
       .inTable("posts")
       .onDelete("CASCADE")
+    table
+      .integer("userId")
+      .notNullable()
+      .references("id")
+      .inTable("users")
+      .onDelete("CASCADE")
   })
 }
 
